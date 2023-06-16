@@ -1,13 +1,13 @@
-import { writeFile, existsSync, readdirSync, mkdir, copyFile } from "node:fs"
+import { existsSync, readdirSync, mkdir, copyFile } from "node:fs"
 import path from "node:path"
 
-const filePath = path.join(process.cwd(), "src", "fs")
-const originalFilesFolder = path.join(filePath, "files")
-const copiedFilesFolder = path.join(filePath, "files_copy")
+const folderPath = path.join(process.cwd(), "src", "fs")
+const originalFilesFolder = path.join(folderPath, "files")
+const copiedFilesFolder = path.join(folderPath, "files_copy")
 
 const copy = async (originalFolder, copiedFolder) => {
   // checking files_copy or files folder
-  if (existsSync(copiedFolder) || !existsSync(originalFolder)) {
+  if (!existsSync(originalFolder) || existsSync(copiedFolder)) {
     throw Error("FS operation failed")
   }
 
